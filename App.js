@@ -10,24 +10,15 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export default function App({ navigation }) {
-  return (
-    <ApolloProvider client={client}>
-      <Navigator />
-    </ApolloProvider>
-  );
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <Navigator />
+  </ApolloProvider>
+);
 
 App.navigationOptions = {
   title: 'Home',
   ...navigationStyles
 };
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center'
-  }
-});
+export default App;

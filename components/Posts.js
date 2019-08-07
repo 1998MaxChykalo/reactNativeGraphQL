@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { graphql } from 'react-apollo';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, ActivityIndicator } from 'react-native';
 
 const Posts = ({ loading, allPosts, navigation }) => {
-  if (loading) return null;
+  if (loading) return <ActivityIndicator size="large" />;
   return (
     <View>
       <FlatList
@@ -14,7 +14,8 @@ const Posts = ({ loading, allPosts, navigation }) => {
           <Text
             onPress={() =>
               navigation.navigate('Post', {
-                id: item.id
+                id: item.id,
+                title: item.title
               })
             }
           >
@@ -27,7 +28,7 @@ const Posts = ({ loading, allPosts, navigation }) => {
 };
 
 const postsQuery = gql`
-  {
+  query postsQuery {
     allPosts {
       title
       id
